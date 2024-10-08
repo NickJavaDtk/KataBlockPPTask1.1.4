@@ -3,17 +3,10 @@ package jm.task.core.jdbc.dao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
@@ -22,7 +15,6 @@ public class UserDaoHibernateImpl implements UserDao {
     public UserDaoHibernateImpl() {
 
     }
-
 
     @Override
     public void createUsersTable() {
@@ -50,6 +42,7 @@ public class UserDaoHibernateImpl implements UserDao {
                 User users = new User(name, lastName, age);
                 session.save(users);
                 transaction.commit();
+                System.out.println("User с именем - " + name + " добавлен в базу данных");
             } catch (Exception e) {
                 if (transaction != null) {
                     transaction.rollback();
@@ -116,6 +109,6 @@ public class UserDaoHibernateImpl implements UserDao {
                 "WHERE (TABLE_SCHEMA = 'kata') AND (TABLE_NAME = 'Users');";
         Session session = Util.getSessionFactory().openSession();
         Object[] array = session.createNativeQuery(sql).stream().toArray();
-        return array[0].equals(BigInteger.valueOf(1l));
+        return array[0].equals(BigInteger.ONE);
     }
 }

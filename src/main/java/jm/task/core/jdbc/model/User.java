@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "Users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -63,7 +63,8 @@ public class User {
     @Override
     public String toString() {
         return "Пользователь{" +
-                "Имя='" + name + '\'' +
+                "ID='" + id + '\'' +
+                ", Имя='" + name + '\'' +
                 ", Фамилия='" + lastName + '\'' +
                 ", Возраст=" + age +
                 '}';

@@ -5,11 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-import org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl;
-import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
-import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,7 +18,6 @@ public class Util {
     private static final String urlDB = "jdbc:mysql://localhost:3306/kata?serverTimezone=UTC";
     private static Connection connection;
     private static SessionFactory sessionFactory;
-    private static EntityManager entityManager;
 
     private static Connection getConnectionBD() {
         try  {
